@@ -1,0 +1,10 @@
+neo4j-cypher-relationships-validation,neo4j-cypher-relationships-validation UNIT,customers,CUSTOMERS,N,Test passed succesfully against golden data set
+neo4j-cypher-relationships-validation,neo4j-cypher-relationships-validation UNIT,,,N,Test passed succesfully against unit test
+neo4j-cypher-customers-validation,neo4j-cypher-customers-validation UNIT,customers,CUSTOMERS,N,Test passed succesfully against golden data set
+neo4j-cypher-customers-validation,neo4j-cypher-customers-validation UNIT,,,N,Test passed succesfully against unit test
+neo4j-cypher-states-validation,neo4j-cypher-states-validation UNIT,States,STATES,N,Test passed succesfully against golden data set
+neo4j-cypher-states-validation,neo4j-cypher-states-validation UNIT,,,N,Test passed succesfully against unit test
+neo4j-output-create-nodes-validation,neo4j-output-create-nodes UNIT,customers,VALIDATE,N,Test passed succesfully against golden data set
+neo4j-output-create-nodes-validation,neo4j-output-create-nodes UNIT,,,N,Test passed succesfully against unit test
+neo4j-output-merge-nodes-validation,neo4j-output-merge-nodes-validation UNIT,customers,VALIDATE,N,Test passed succesfully against golden data set
+neo4j-output-merge-nodes-validation,neo4j-output-merge-nodes-validation UNIT,,,N,Test passed succesfully against unit test
