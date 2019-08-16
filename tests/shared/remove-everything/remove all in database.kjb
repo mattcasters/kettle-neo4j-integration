@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>cleanup-database</name>
+  <name>remove all in database</name>
   <description />
   <extended_description />
   <job_version />
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2019/08/07 13:43:26.796</created_date>
+  <created_date>2018/07/05 07:43:06.087</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2019/08/07 13:43:26.796</modified_date>
+  <modified_date>2018/07/05 07:43:06.087</modified_date>
   <parameters>
-    </parameters>
+    <parameter>
+      <name>BATCH_SIZE</name>
+      <default_value />
+      <description />
+    </parameter>
+  </parameters>
   <slaveservers>
     <slaveserver>
       <name>8888</name>
@@ -74,12 +80,12 @@
     <timeout_days />
     <field>
       <id>ID_JOB</id>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <name>ID_JOB</name>
     </field>
     <field>
       <id>CHANNEL_ID</id>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <name>CHANNEL_ID</name>
     </field>
     <field>
@@ -119,7 +125,7 @@
     </field>
     <field>
       <id>LINES_REJECTED</id>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <name>LINES_REJECTED</name>
     </field>
     <field>
@@ -154,7 +160,7 @@
     </field>
     <field>
       <id>LOG_FIELD</id>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <name>LOG_FIELD</name>
     </field>
     <field>
@@ -339,7 +345,7 @@
   <shared_objects_file />
   <entries>
     <entry>
-      <name>Start</name>
+      <name>START</name>
       <description />
       <type>SPECIAL</type>
       <attributes />
@@ -356,57 +362,204 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>176</xloc>
-      <yloc>160</yloc>
+      <xloc>80</xloc>
+      <yloc>80</yloc>
       <attributes_kjc />
     </entry>
     <entry>
-      <name>remove all in database</name>
+      <name>drop all constraints</name>
       <description />
-      <type>JOB</type>
+      <type>TRANS</type>
       <attributes />
       <specification_method>filename</specification_method>
-      <job_object_id />
-      <filename>${ENVIRONMENT_HOME}/tests/shared/remove-everything/remove all in database.kjb</filename>
-      <jobname />
-      <directory />
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/drop all constraints.ktr</filename>
+      <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile />
       <logext />
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>336</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>remove all nodes</name>
+      <description />
+      <type>TRANS</type>
+      <attributes />
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/remove all nodes.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <run_configuration>Pentaho local</run_configuration>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
           <name>BATCH_SIZE</name>
           <stream_name />
-          <value>10000</value>
+          <value>${BATCH_SIZE}</value>
         </parameter>
       </parameters>
-      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>384</xloc>
-      <yloc>160</yloc>
+      <xloc>640</xloc>
+      <yloc>192</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>drop all indexes</name>
+      <description />
+      <type>TRANS</type>
+      <attributes />
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/drop all indexes.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>80</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>remove all relationships</name>
+      <description />
+      <type>TRANS</type>
+      <attributes />
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/remove all relationships.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>BATCH_SIZE</name>
+          <stream_name />
+          <value>${BATCH_SIZE}</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>336</xloc>
+      <yloc>192</yloc>
       <attributes_kjc />
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>Start</from>
-      <to>remove all in database</to>
+      <from>drop all constraints</from>
+      <to>drop all indexes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>drop all indexes</from>
+      <to>remove all relationships</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>remove all relationships</from>
+      <to>remove all nodes</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>drop all constraints</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -415,20 +568,42 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>WARNING!!!! Removes everything in Neo4j database called "Cleanup"
+Set the appropriate variables</note>
+      <xloc>32</xloc>
+      <yloc>464</yloc>
+      <width>1411</width>
+      <heigth>122</heigth>
+      <fontname>Noto Sans</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>Y</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <attributes>
     <group>
-      <name>METASTORE.pentaho</name>
+      <name>METASTORE.NamedClusters</name>
       <attribute>
-        <key>Default Run Configuration</key>
-        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+        <key>NamedCluster</key>
+        <value>{"namespace":"NamedClusters","id":"NamedCluster","name":"NamedCluster","description":"A NamedCluster","metaStoreName":null}</value>
       </attribute>
     </group>
     <group>
-      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"NamedClusters","type":"NamedCluster"}</name>
       <attribute>
-        <key>Pentaho local</key>
-        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"pentaho","value":"N"},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+        <key>hadoop-cluster</key>
+        <value>{"children":[{"children":[],"id":"hdfsPassword","value":"dHJ4cTc3Nzc="},{"children":[],"id":"oozieUrl","value":"http://sandbox-hdp.hortonworks.com:8080/oozie"},{"children":[],"id":"mapr","value":"N"},{"children":[],"id":"useGateway","value":"N"},{"children":[],"id":"lastModifiedDate","value":"1531495569608"},{"children":[],"id":"jobTrackerHost","value":"sandbox-hdp.hortonworks.com"},{"children":[],"id":"zooKeeperHost","value":"sandbox-hdp.hortonworks.com"},{"children":[],"id":"shimIdentifier","value":null},{"children":[],"id":"gatewayUrl","value":null},{"children":[],"id":"jobTrackerPort","value":"8032"},{"children":[],"id":"zooKeeperPort","value":"2181"},{"children":[],"id":"name","value":"hadoop-cluster"},{"children":[],"id":"hdfsPort","value":"8020"},{"children":[],"id":"hdfsUsername","value":"root"},{"children":[],"id":"gatewayPassword","value":null},{"children":[],"id":"kafkaBootstrapServers","value":"sandbox-hdp.hortonworks.com:6667"},{"children":[],"id":"storageScheme","value":"hdfs"},{"children":[],"id":"hdfsHost","value":"sandbox-hdp.hortonworks.com"},{"children":[],"id":"gatewayUsername","value":null}],"id":"hadoop-cluster","value":null,"name":"hadoop-cluster","owner":null,"ownerPermissionsList":[]}</value>
       </attribute>
     </group>
   </attributes>

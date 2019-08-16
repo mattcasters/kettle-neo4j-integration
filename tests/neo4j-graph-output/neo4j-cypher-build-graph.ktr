@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>neo4j-cypher-states-validation</name>
+    <name>neo4j-output-create-nodes</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -451,9 +450,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
+        <name>slave1</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8300</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -464,9 +463,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>slave2</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8301</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -480,24 +479,45 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/08/06 18:28:33.119</created_date>
+    <created_date>2019/08/06 16:10:49.753</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/08/06 18:28:33.119</modified_date>
+    <modified_date>2019/08/06 16:10:49.753</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Commit size set to 123 to check for dangling records</note>
+      <xloc>640</xloc>
+      <yloc>48</yloc>
+      <width>383</width>
+      <heigth>27</heigth>
+      <fontname>Sans</fontname>
+      <fontsize>6</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>Read :Sate</from>
-      <to>STATES</to>
+      <from>customers-1k.txt</from>
+      <to>Update Customers graph</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Read :Sate</name>
-    <type>Neo4jCypherOutput</type>
+    <name>Update Customers graph</name>
+    <type>Neo4jGraphOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -507,30 +527,73 @@
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>MATCH(s:State) 
-RETURN s.stateCode as stateCode, s.state as state 
-</cypher>
-    <batch_size />
-    <read_only>Y</read_only>
-    <cypher_from_field>N</cypher_from_field>
-    <cypher_field />
-    <unwind>N</unwind>
-    <unwind_map />
+    <model>Customers</model>
+    <batch_size>123</batch_size>
+    <create_indexes>Y</create_indexes>
     <returning_graph>N</returning_graph>
     <return_graph_field />
-    <mappings />
-    <returns>
-      <return>
-        <name>stateCode</name>
-        <type>String</type>
-        <source_type>String</source_type>
-      </return>
-      <return>
-        <name>state</name>
-        <type>String</type>
-        <source_type>String</source_type>
-      </return>
-    </returns>
+    <mappings>
+      <mapping>
+        <source_field>id</source_field>
+        <target_type>Node</target_type>
+        <target_name>Customer</target_name>
+        <target_property>id</target_property>
+      </mapping>
+      <mapping>
+        <source_field>name</source_field>
+        <target_type>Node</target_type>
+        <target_name>Customer</target_name>
+        <target_property>name</target_property>
+      </mapping>
+      <mapping>
+        <source_field>firstname</source_field>
+        <target_type>Node</target_type>
+        <target_name>Customer</target_name>
+        <target_property>firstname</target_property>
+      </mapping>
+      <mapping>
+        <source_field>birthdate</source_field>
+        <target_type>Node</target_type>
+        <target_name>Customer</target_name>
+        <target_property>birthdate</target_property>
+      </mapping>
+      <mapping>
+        <source_field>zip</source_field>
+        <target_type>Node</target_type>
+        <target_name>Zip</target_name>
+        <target_property>zip</target_property>
+      </mapping>
+      <mapping>
+        <source_field>city</source_field>
+        <target_type>Node</target_type>
+        <target_name>City</target_name>
+        <target_property>city</target_property>
+      </mapping>
+      <mapping>
+        <source_field>street</source_field>
+        <target_type>Node</target_type>
+        <target_name>Street</target_name>
+        <target_property>street</target_property>
+      </mapping>
+      <mapping>
+        <source_field>housenr</source_field>
+        <target_type>Node</target_type>
+        <target_name>House</target_name>
+        <target_property>housenr</target_property>
+      </mapping>
+      <mapping>
+        <source_field>stateCode</source_field>
+        <target_type>Node</target_type>
+        <target_name>State</target_name>
+        <target_property>stateCode</target_property>
+      </mapping>
+      <mapping>
+        <source_field>state</source_field>
+        <target_type>Node</target_type>
+        <target_name>State</target_name>
+        <target_property>state</target_property>
+      </mapping>
+    </mappings>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -540,14 +603,14 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>112</yloc>
+      <xloc>464</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>STATES</name>
-    <type>Dummy</type>
+    <name>customers-1k.txt</name>
+    <type>CsvInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -556,6 +619,131 @@ RETURN s.stateCode as stateCode, s.state as state
       <method>none</method>
       <schema_name />
     </partitioning>
+    <filename>${ENVIRONMENT_HOME}/datasets/customers.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>firstname</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>13</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>zip</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>city</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>8</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>birthdate</name>
+        <type>Date</type>
+        <format>yyyy/MM/dd</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>street</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>11</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>housenr</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>stateCode</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>state</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>30</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -565,8 +753,8 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>112</yloc>
+      <xloc>208</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

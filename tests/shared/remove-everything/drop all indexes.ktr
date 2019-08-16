@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>neo4j-cypher-states-validation</name>
+    <name>drop all indexes</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -425,9 +424,9 @@
     </partitionschemas>
     <slaveservers>
       <slaveserver>
-        <name>8888</name>
+        <name>8081</name>
         <hostname>localhost</hostname>
-        <port>8888</port>
+        <port>8081</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -438,22 +437,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>sandbox</name>
-        <hostname>sandbox.kettle.be</hostname>
-        <port>8080</port>
-        <webAppName>spoon</webAppName>
-        <username>cluster</username>
-        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-        <proxy_hostname />
-        <proxy_port />
-        <non_proxy_hosts />
-        <master>N</master>
-        <sslMode>N</sslMode>
-      </slaveserver>
-      <slaveserver>
-        <name>slave2</name>
+        <name>8088</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8088</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -464,9 +450,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>8181</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8181</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -480,9 +466,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/08/06 18:28:33.119</created_date>
+    <created_date>2018/07/05 07:27:40.726</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/08/06 18:28:33.119</modified_date>
+    <modified_date>2018/07/05 07:27:40.726</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -490,13 +476,68 @@
   </notepads>
   <order>
     <hop>
-      <from>Read :Sate</from>
-      <to>STATES</to>
+      <from>Get index list on database</from>
+      <to>remove "</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>remove "</from>
+      <to>Build DROP INDEX cypher</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Build DROP INDEX cypher</from>
+      <to>perform DROP INDEX</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Read :Sate</name>
+    <name>Build DROP INDEX cypher</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var cypher = "DROP "+description+";";
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>cypher</name>
+        <rename>cypher</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get index list on database</name>
     <type>Neo4jCypherOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -506,32 +547,18 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Test</connection>
-    <cypher>MATCH(s:State) 
-RETURN s.stateCode as stateCode, s.state as state 
-</cypher>
-    <batch_size />
-    <read_only>Y</read_only>
+    <connection>Cleanup</connection>
+    <cypher>call db.indexes()</cypher>
+    <batch_size>1</batch_size>
     <cypher_from_field>N</cypher_from_field>
     <cypher_field />
-    <unwind>N</unwind>
-    <unwind_map />
-    <returning_graph>N</returning_graph>
-    <return_graph_field />
     <mappings />
     <returns>
       <return>
-        <name>stateCode</name>
+        <name>description</name>
         <type>String</type>
-        <source_type>String</source_type>
-      </return>
-      <return>
-        <name>state</name>
-        <type>String</type>
-        <source_type>String</source_type>
       </return>
     </returns>
-    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -540,14 +567,14 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
+      <xloc>160</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>STATES</name>
-    <type>Dummy</type>
+    <name>perform DROP INDEX</name>
+    <type>Neo4jCypherOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -556,7 +583,13 @@ RETURN s.stateCode as stateCode, s.state as state
       <method>none</method>
       <schema_name />
     </partitioning>
-    <attributes />
+    <connection>Cleanup</connection>
+    <cypher />
+    <batch_size>1</batch_size>
+    <cypher_from_field>Y</cypher_from_field>
+    <cypher_field>cypher</cypher_field>
+    <mappings />
+    <returns />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -565,7 +598,45 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
+      <xloc>384</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>remove "</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>description</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\"</replace_string>
+        <replace_by_string />
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
       <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
@@ -575,5 +646,4 @@ RETURN s.stateCode as stateCode, s.state as state
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes />
 </transformation>

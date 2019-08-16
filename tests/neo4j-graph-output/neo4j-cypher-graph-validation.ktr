@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>neo4j-cypher-states-validation</name>
+    <name>neo4j-cypher-customers-validation</name>
     <description />
     <extended_description />
     <trans_version />
@@ -451,9 +451,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave2</name>
+        <name>slave1</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8300</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -464,9 +464,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>slave2</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8301</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -490,13 +490,38 @@
   </notepads>
   <order>
     <hop>
-      <from>Read :Sate</from>
-      <to>STATES</to>
+      <from>Read :Customer</from>
+      <to>CUSTOMERS</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Read :Sate</name>
+    <name>CUSTOMERS</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Read :Customer</name>
     <type>Neo4jCypherOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -507,9 +532,22 @@
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>MATCH(s:State) 
-RETURN s.stateCode as stateCode, s.state as state 
-</cypher>
+    <cypher>MATCH (c:Customer)
+MATCH (c)-[:IN_CITY]->(i:City)
+MATCH (c)-[:IN_STATE]->(s:State)
+MATCH (c)-[:IN_STREET]->(r:Street)
+MATCH (c)-[:IN_HOUSE]->(h:House)
+MATCH (c)-[:IN_ZIP]->(z:Zip)
+RETURN c.id as id, 
+   c.name as name, 
+   c.firstname as firstname,
+   c.birthdate as birthdate,
+   z.zip as zip,
+   i.city as city, 
+   r.street as street,
+   h.housenr as housenr,
+   s.stateCode as stateCode,
+   s.state as state</cypher>
     <batch_size />
     <read_only>Y</read_only>
     <cypher_from_field>N</cypher_from_field>
@@ -520,6 +558,46 @@ RETURN s.stateCode as stateCode, s.state as state
     <return_graph_field />
     <mappings />
     <returns>
+      <return>
+        <name>id</name>
+        <type>Integer</type>
+        <source_type>Integer</source_type>
+      </return>
+      <return>
+        <name>name</name>
+        <type>String</type>
+        <source_type>String</source_type>
+      </return>
+      <return>
+        <name>firstname</name>
+        <type>String</type>
+        <source_type>String</source_type>
+      </return>
+      <return>
+        <name>birthdate</name>
+        <type>Date</type>
+        <source_type>LocalDateTime</source_type>
+      </return>
+      <return>
+        <name>zip</name>
+        <type>Integer</type>
+        <source_type>Integer</source_type>
+      </return>
+      <return>
+        <name>city</name>
+        <type>String</type>
+        <source_type>String</source_type>
+      </return>
+      <return>
+        <name>street</name>
+        <type>String</type>
+        <source_type>String</source_type>
+      </return>
+      <return>
+        <name>housenr</name>
+        <type>Integer</type>
+        <source_type>Integer</source_type>
+      </return>
       <return>
         <name>stateCode</name>
         <type>String</type>
@@ -540,33 +618,8 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>STATES</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>112</yloc>
+      <xloc>192</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

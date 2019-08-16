@@ -16,7 +16,7 @@
       </child>
       <child>
          <id>autoOpening</id>
-         <value>N</value>
+         <value>Y</value>
          <type>String</type>
       </child>
       <child>

@@ -21,7 +21,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
+                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/../shared/cleanup-database.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -53,7 +53,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/run-all-integration-tests.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/remove all in database.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -68,7 +68,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Trans</value>
+                     <value>Job</value>
                      <type>String</type>
                   </child>
                </children>
@@ -85,7 +85,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher/main-neo4j-cypher.kjb</value>
+                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/neo4j-cypher-build-graph.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -100,7 +100,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Job</value>
+                     <value>Trans</value>
                      <type>String</type>
                   </child>
                </children>
@@ -117,7 +117,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher/neo4j-cypher-customers-validation.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/main-neo4j-graph-output.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -132,7 +132,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Trans</value>
+                     <value>Job</value>
                      <type>String</type>
                   </child>
                </children>
@@ -149,7 +149,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher/neo4j-cypher-create-nodes.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -164,7 +164,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Trans</value>
+                     <value>Job</value>
                      <type>String</type>
                   </child>
                </children>
@@ -181,7 +181,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-output-create-nodes/main-neo4j-output-create-nodes.kjb</value>
+                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/drop all indexes.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -196,7 +196,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Job</value>
+                     <value>Trans</value>
                      <type>String</type>
                   </child>
                </children>
@@ -225,7 +225,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
+                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/drop all indexes.ktr</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -240,7 +240,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Job</value>
+                     <value>Trans</value>
                      <type>String</type>
                   </child>
                </children>

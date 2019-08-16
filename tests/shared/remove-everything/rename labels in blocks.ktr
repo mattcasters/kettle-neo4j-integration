@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>neo4j-cypher-states-validation</name>
+    <name>rename labels in blocks</name>
     <description />
     <extended_description />
     <trans_version />
@@ -9,6 +9,11 @@
     <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
+      <parameter>
+        <name>COPYNR</name>
+        <default_value>0</default_value>
+        <description>The copy nr</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -425,9 +430,9 @@
     </partitionschemas>
     <slaveservers>
       <slaveserver>
-        <name>8888</name>
+        <name>8081</name>
         <hostname>localhost</hostname>
-        <port>8888</port>
+        <port>8081</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -438,22 +443,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>sandbox</name>
-        <hostname>sandbox.kettle.be</hostname>
-        <port>8080</port>
-        <webAppName>spoon</webAppName>
-        <username>cluster</username>
-        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
-        <proxy_hostname />
-        <proxy_port />
-        <non_proxy_hosts />
-        <master>N</master>
-        <sslMode>N</sslMode>
-      </slaveserver>
-      <slaveserver>
-        <name>slave2</name>
+        <name>8181</name>
         <hostname>localhost</hostname>
-        <port>8301</port>
+        <port>8181</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -464,9 +456,9 @@
         <sslMode>N</sslMode>
       </slaveserver>
       <slaveserver>
-        <name>slave1</name>
+        <name>8088</name>
         <hostname>localhost</hostname>
-        <port>8300</port>
+        <port>8088</port>
         <webAppName />
         <username>cluster</username>
         <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
@@ -480,23 +472,81 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/08/06 18:28:33.119</created_date>
+    <created_date>2018/07/06 09:27:41.928</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/08/06 18:28:33.119</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2018/07/06 09:27:41.928</modified_date>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
     <hop>
-      <from>Read :Sate</from>
-      <to>STATES</to>
+      <from>build cypher</from>
+      <to>Copy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>copyNr</from>
+      <to>build cypher</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>oo</from>
+      <to>copyNr</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Copy</from>
+      <to>done?</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>done?</from>
+      <to>Abort</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Read :Sate</name>
+    <name>copyNr</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>copyNr</name>
+        <variable>${COPYNR}</variable>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Copy</name>
     <type>Neo4jCypherOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -506,32 +556,98 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>Test</connection>
-    <cypher>MATCH(s:State) 
-RETURN s.stateCode as stateCode, s.state as state 
-</cypher>
-    <batch_size />
-    <read_only>Y</read_only>
-    <cypher_from_field>N</cypher_from_field>
-    <cypher_field />
-    <unwind>N</unwind>
-    <unwind_map />
-    <returning_graph>N</returning_graph>
-    <return_graph_field />
+    <connection>Remote</connection>
+    <cypher />
+    <batch_size>1</batch_size>
+    <cypher_from_field>Y</cypher_from_field>
+    <cypher_field>cypherCopy</cypher_field>
     <mappings />
     <returns>
       <return>
-        <name>stateCode</name>
-        <type>String</type>
-        <source_type>String</source_type>
-      </return>
-      <return>
-        <name>state</name>
-        <type>String</type>
-        <source_type>String</source_type>
+        <name>rowCount</name>
+        <type>Integer</type>
       </return>
     </returns>
-    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>build cypher</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var copyLabel = "Customer"+copyNr;
+
+var cypherCopy = "MATCH (n:"+copyLabel+") WITH n LIMIT 100000 REMOVE n:"+copyLabel+" SET n:Customer RETURN count(n) as nodeCount;";
+
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>cypherCopy</name>
+        <rename>cypherCopy</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>oo</name>
+    <type>RowGenerator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+    </fields>
+    <limit>10</limit>
+    <never_ending>Y</never_ending>
+    <interval_in_ms />
+    <row_time_field />
+    <last_time_field />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -541,13 +657,13 @@ RETURN s.stateCode as stateCode, s.state as state
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>112</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>STATES</name>
-    <type>Dummy</type>
+    <name>done?</name>
+    <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -556,7 +672,25 @@ RETURN s.stateCode as stateCode, s.state as state
       <method>none</method>
       <schema_name />
     </partitioning>
-    <attributes />
+    <send_true_to>Abort</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>rowCount</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -565,8 +699,36 @@ RETURN s.stateCode as stateCode, s.state as state
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>112</yloc>
+      <xloc>752</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <row_threshold>0</row_threshold>
+    <message>All done!</message>
+    <always_log_rows>N</always_log_rows>
+    <abort_option>ABORT</abort_option>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -575,5 +737,4 @@ RETURN s.stateCode as stateCode, s.state as state
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes />
 </transformation>
