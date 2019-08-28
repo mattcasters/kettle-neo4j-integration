@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run-all-integration-tests</name>
+    <name>neo4j-output-create-nodes-relationship</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -479,29 +480,50 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/08/07 15:08:36.402</created_date>
+    <created_date>2019/08/06 16:10:49.753</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/08/07 15:08:36.402</modified_date>
+    <modified_date>2019/08/06 16:10:49.753</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Commit size set to 123 to check for dangling records</note>
+      <xloc>640</xloc>
+      <yloc>48</yloc>
+      <width>383</width>
+      <heigth>27</heigth>
+      <fontname>Sans</fontname>
+      <fontsize>6</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>calculate parent folder</from>
-      <to>run-integration-test</to>
+      <from>customers-1k.txt</from>
+      <to>labels</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get main jobs</from>
-      <to>calculate parent folder</to>
+      <from>labels</from>
+      <to>(:Customer)-[:LIVES_IN]->(:State)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Get main jobs</name>
-    <type>GetFileNames</type>
+    <name>(:Customer)-[:LIVES_IN]->(:State)</name>
+    <type>Neo4JOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -510,26 +532,101 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>N</filefield>
-    <rownum_field />
-    <filename_Field />
-    <wildcard_Field />
-    <exclude_wildcard_Field />
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name>${ENVIRONMENT_HOME}/tests/</name>
-      <filemask>main.*kjb$</filemask>
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>Y</include_subfolders>
-    </file>
+    <connection>Test</connection>
+    <batch_size>123</batch_size>
+    <key />
+    <create_indexes>N</create_indexes>
+    <use_create>Y</use_create>
+    <only_create_relationships>N</only_create_relationships>
+    <returning_graph>N</returning_graph>
+    <return_graph_field>graph</return_graph_field>
+    <from>
+      <read_only_from_node>N</read_only_from_node>
+      <labels>
+        <label>labelCustomer</label>
+        <value />
+      </labels>
+      <properties>
+        <property>
+          <name>id</name>
+          <value>id</value>
+          <type>Integer</type>
+          <primary>Y</primary>
+        </property>
+        <property>
+          <name>name</name>
+          <value>name</value>
+          <type>String</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>firstname</name>
+          <value>firstname</value>
+          <type>String</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>zip</name>
+          <value>zip</value>
+          <type>Integer</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>city</name>
+          <value>city</value>
+          <type>String</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>birthdate</name>
+          <value>birthdate</value>
+          <type>LocalDateTime</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>street</name>
+          <value>street</value>
+          <type>String</type>
+          <primary>N</primary>
+        </property>
+        <property>
+          <name>housenr</name>
+          <value>housenr</value>
+          <type>Integer</type>
+          <primary>N</primary>
+        </property>
+      </properties>
+    </from>
+    <to>
+      <read_only_to_node>N</read_only_to_node>
+      <labels>
+        <label>labelState</label>
+        <value />
+      </labels>
+      <properties>
+        <property>
+          <name>stateCode</name>
+          <value>stateCode</value>
+          <type>String</type>
+          <primary>Y</primary>
+        </property>
+        <property>
+          <name>state</name>
+          <value>state</value>
+          <type>String</type>
+          <primary>N</primary>
+        </property>
+      </properties>
+    </to>
+    <relationship>labelLivesIn</relationship>
+    <relationship_value />
+    <relprops>
+      <relprop>
+        <name>customerId</name>
+        <value>id</value>
+        <type>Integer</type>
+      </relprop>
+    </relprops>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -539,14 +636,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>80</yloc>
+      <xloc>528</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>calculate parent folder</name>
-    <type>ScriptValueMod</type>
+    <name>customers-1k.txt</name>
+    <type>CsvInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -555,25 +652,129 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>
-var file = new Packages.java.io.File(filename);
-var parent = file.getParentFile().getName();</jsScript_script>
-      </jsScript>
-    </jsScripts>
+    <filename>${ENVIRONMENT_HOME}/datasets/customers.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
     <fields>
       <field>
-        <name>parent</name>
-        <rename>parent</rename>
+        <name>id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>name</name>
         <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>firstname</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>13</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>zip</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>city</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>8</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>birthdate</name>
+        <type>Date</type>
+        <format>yyyy/MM/dd</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>N</replace>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>street</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>11</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>housenr</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>stateCode</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>state</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>30</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
       </field>
     </fields>
     <attributes />
@@ -585,14 +786,14 @@ var parent = file.getParentFile().getName();</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>80</yloc>
+      <xloc>160</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>run-integration-test</name>
-    <type>JobExecutor</type>
+    <name>labels</name>
+    <type>Constant</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -601,45 +802,44 @@ var parent = file.getParentFile().getName();</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <specification_method>filename</specification_method>
-    <job_object_id />
-    <job_name />
-    <filename>${Internal.Entry.Current.Directory}/run-integration-test.kjb</filename>
-    <directory_path />
-    <group_size>1</group_size>
-    <group_field />
-    <group_time />
-    <parameters>
-      <variablemapping>
-        <variable>MAIN_JOB</variable>
-        <field>filename</field>
-        <input />
-      </variablemapping>
-      <variablemapping>
-        <variable>TEST_FOLDER</variable>
-        <field>parent</field>
-        <input />
-      </variablemapping>
-      <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step />
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step />
-    <result_files_target_step />
-    <result_files_file_name_field>FileName</result_files_file_name_field>
+    <fields>
+      <field>
+        <name>labelCustomer</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>Customer</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>labelState</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>State</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>labelLivesIn</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>LIVES_IN</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <attributes />
     <cluster_schema />
     <remotesteps>
@@ -649,8 +849,8 @@ var parent = file.getParentFile().getName();</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>80</yloc>
+      <xloc>352</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

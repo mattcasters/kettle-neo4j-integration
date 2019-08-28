@@ -21,134 +21,6 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/../shared/cleanup-database.kjb</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Job</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>1</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/remove all in database.kjb</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Job</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>2</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
-                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/neo4j-cypher-build-graph.ktr</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Trans</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>3</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-graph-output/main-neo4j-graph-output.kjb</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Job</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>4</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
                      <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
@@ -165,38 +37,6 @@
                   <child>
                      <id>fileType</id>
                      <value>Job</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>5</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
-                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/drop all indexes.ktr</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Trans</value>
                      <type>String</type>
                   </child>
                </children>
@@ -225,7 +65,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/shared/remove-everything/drop all indexes.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -240,7 +80,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Trans</value>
+                     <value>Job</value>
                      <type>String</type>
                   </child>
                </children>
