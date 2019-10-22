@@ -469,6 +469,9 @@
       </attribute>
     </group>
     <group>
+      <name>debug_plugin</name>
+    </group>
+    <group>
       <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
       <attribute>
         <key>Pentaho local</key>
