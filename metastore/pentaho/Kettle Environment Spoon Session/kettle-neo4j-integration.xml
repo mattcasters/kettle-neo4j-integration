@@ -21,38 +21,6 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-output-dynamic-labels/neo4j-output-dynamic-labels-load-data.ktr</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>repositoryName</id>
-                     <value></value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>directory</id>
-                     <value>/</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>fileType</id>
-                     <value>Trans</value>
-                     <type>String</type>
-                  </child>
-               </children>
-            </child>
-            <child>
-               <id>1</id>
-               <value></value>
-               <type>String</type>
-               <children>
-                  <child>
-                     <id>sourceRepository</id>
-                     <value>N</value>
-                     <type>String</type>
-                  </child>
-                  <child>
-                     <id>filename</id>
                      <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
@@ -97,7 +65,7 @@
                   </child>
                   <child>
                      <id>filename</id>
-                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-output-dynamic-labels/neo4j-output-dynamic-labels-load-data.ktr</value>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
                   <child>
@@ -112,7 +80,7 @@
                   </child>
                   <child>
                      <id>fileType</id>
-                     <value>Trans</value>
+                     <value>Job</value>
                      <type>String</type>
                   </child>
                </children>
