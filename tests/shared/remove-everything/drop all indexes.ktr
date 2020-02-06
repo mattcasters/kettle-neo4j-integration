@@ -462,6 +462,58 @@
         <master>N</master>
         <sslMode>N</sslMode>
       </slaveserver>
+      <slaveserver>
+        <name>8888</name>
+        <hostname>localhost</hostname>
+        <port>8888</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>sandbox</name>
+        <hostname>sandbox.kettle.be</hostname>
+        <port>8080</port>
+        <webAppName>spoon</webAppName>
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>slave1</name>
+        <hostname>localhost</hostname>
+        <port>8300</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
+      <slaveserver>
+        <name>slave2</name>
+        <hostname>localhost</hostname>
+        <port>8301</port>
+        <webAppName />
+        <username>cluster</username>
+        <password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password>
+        <proxy_hostname />
+        <proxy_port />
+        <non_proxy_hosts />
+        <master>N</master>
+        <sslMode>N</sslMode>
+      </slaveserver>
     </slaveservers>
     <clusterschemas>
     </clusterschemas>
@@ -509,7 +561,7 @@
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>
-var cypher = "DROP "+description+";";
+var cypher = "DROP INDEX "+name+";";
 </jsScript_script>
       </jsScript>
     </jsScripts>
@@ -523,6 +575,7 @@ var cypher = "DROP "+description+";";
         <replace>N</replace>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -550,15 +603,23 @@ var cypher = "DROP "+description+";";
     <connection>Cleanup</connection>
     <cypher>call db.indexes()</cypher>
     <batch_size>1</batch_size>
+    <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>N</cypher_from_field>
     <cypher_field />
+    <unwind>N</unwind>
+    <unwind_map />
+    <returning_graph>N</returning_graph>
+    <return_graph_field />
     <mappings />
     <returns>
       <return>
-        <name>description</name>
+        <name>name</name>
         <type>String</type>
+        <source_type />
       </return>
     </returns>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -586,10 +647,17 @@ var cypher = "DROP "+description+";";
     <connection>Cleanup</connection>
     <cypher />
     <batch_size>1</batch_size>
+    <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>Y</cypher_from_field>
     <cypher_field>cypher</cypher_field>
+    <unwind>N</unwind>
+    <unwind_map />
+    <returning_graph>N</returning_graph>
+    <return_graph_field />
     <mappings />
     <returns />
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -616,7 +684,7 @@ var cypher = "DROP "+description+";";
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>description</in_stream_name>
+        <in_stream_name>name</in_stream_name>
         <out_stream_name />
         <use_regex>yes</use_regex>
         <replace_string>\"</replace_string>
@@ -628,6 +696,7 @@ var cypher = "DROP "+description+";";
         <is_unicode>no</is_unicode>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -646,4 +715,5 @@ var cypher = "DROP "+description+";";
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes />
 </transformation>
