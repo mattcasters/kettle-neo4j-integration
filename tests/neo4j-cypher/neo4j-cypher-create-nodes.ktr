@@ -573,7 +573,7 @@
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>CREATE (n:Customer { id : {id} })</cypher>
+    <cypher>CREATE (n:Customer { id : $id })</cypher>
     <batch_size>123</batch_size>
     <read_only>N</read_only>
     <retry>N</retry>
@@ -617,7 +617,7 @@
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>CREATE (s:State { stateCode : {stateCode} })</cypher>
+    <cypher>CREATE (s:State { stateCode : $stateCode })</cypher>
     <batch_size>123</batch_size>
     <read_only>N</read_only>
     <retry>N</retry>

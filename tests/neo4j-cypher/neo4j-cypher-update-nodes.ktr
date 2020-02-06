@@ -527,42 +527,6 @@
     </hop>
   </order>
   <step>
-    <name>StateCode, State</name>
-    <type>UniqueRowsByHashSet</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <store_values>N</store_values>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description />
-    <fields>
-      <field>
-        <name>stateCode</name>
-      </field>
-      <field>
-        <name>state</name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>MATCH/SET :Customer</name>
     <type>Neo4jCypherOutput</type>
     <description />
@@ -574,12 +538,13 @@
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>MATCH (n:Customer { id : {id} })
-SET n.name = {name}, n.firstname = {firstname}, n.zip = {zip}, 
-    n.city = {city}, n.birthdate = {birthdate}, 
-    n.street = {street}, n.housenr = {housenr}</cypher>
+    <cypher>MATCH (n:Customer { id : $id })
+SET n.name = $name, n.firstname = $firstname, n.zip = $zip, 
+    n.city = $city, n.birthdate = $birthdate, 
+    n.street = $street, n.housenr = $housenr</cypher>
     <batch_size>123</batch_size>
     <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>N</cypher_from_field>
     <cypher_field />
     <unwind>N</unwind>
@@ -655,10 +620,11 @@ SET n.name = {name}, n.firstname = {firstname}, n.zip = {zip},
       <schema_name />
     </partitioning>
     <connection>Test</connection>
-    <cypher>MATCH (s:State { stateCode : {stateCode} })
-SET s.state = {state}</cypher>
+    <cypher>MATCH (s:State { stateCode : $stateCode })
+SET s.state = $state</cypher>
     <batch_size>123</batch_size>
     <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>N</cypher_from_field>
     <cypher_field />
     <unwind>N</unwind>
@@ -688,6 +654,42 @@ SET s.state = {state}</cypher>
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StateCode, State</name>
+    <type>UniqueRowsByHashSet</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <store_values>N</store_values>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description />
+    <fields>
+      <field>
+        <name>stateCode</name>
+      </field>
+      <field>
+        <name>state</name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>

@@ -516,6 +516,58 @@
     </hop>
   </order>
   <step>
+    <name>MERGE (:Customer)-[:LIVES_IN]-(:State)</name>
+    <type>Neo4jCypherOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>Test</connection>
+    <cypher>MATCH (c:Customer { id : $id })
+MATCH (s:State { stateCode : $stateCode })
+MERGE (c)-[r:LIVES_IN]->(s)
+</cypher>
+    <batch_size>123</batch_size>
+    <read_only>N</read_only>
+    <retry>Y</retry>
+    <cypher_from_field>N</cypher_from_field>
+    <cypher_field />
+    <unwind>N</unwind>
+    <unwind_map />
+    <returning_graph>N</returning_graph>
+    <return_graph_field />
+    <mappings>
+      <mapping>
+        <parameter>id</parameter>
+        <field>id</field>
+        <type>Integer</type>
+      </mapping>
+      <mapping>
+        <parameter>stateCode</parameter>
+        <field>stateCode</field>
+        <type>String</type>
+      </mapping>
+    </mappings>
+    <returns />
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>customers-1k.txt</name>
     <type>CsvInput</type>
     <description />
@@ -661,57 +713,6 @@
     </remotesteps>
     <GUI>
       <xloc>208</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MERGE (:Customer)-[:LIVES_IN]-(:State)</name>
-    <type>Neo4jCypherOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>Test</connection>
-    <cypher>MATCH (c:Customer { id : {id} })
-MATCH (s:State { stateCode : {stateCode} })
-MERGE (c)-[r:LIVES_IN]->(s)
-</cypher>
-    <batch_size>123</batch_size>
-    <read_only>N</read_only>
-    <cypher_from_field>N</cypher_from_field>
-    <cypher_field />
-    <unwind>N</unwind>
-    <unwind_map />
-    <returning_graph>N</returning_graph>
-    <return_graph_field />
-    <mappings>
-      <mapping>
-        <parameter>id</parameter>
-        <field>id</field>
-        <type>Integer</type>
-      </mapping>
-      <mapping>
-        <parameter>stateCode</parameter>
-        <field>stateCode</field>
-        <type>String</type>
-      </mapping>
-    </mappings>
-    <returns />
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
