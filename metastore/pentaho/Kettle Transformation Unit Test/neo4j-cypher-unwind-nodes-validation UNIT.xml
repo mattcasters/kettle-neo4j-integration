@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <element>
-   <id>neo4j-cypher-unwind-customers-validation UNIT</id>
+   <id>neo4j-cypher-unwind-nodes-validation UNIT</id>
    <value></value>
    <type>String</type>
    <children>
@@ -16,7 +16,7 @@
       </child>
       <child>
          <id>autoOpening</id>
-         <value>Y</value>
+         <value>N</value>
          <type>String</type>
       </child>
       <child>
@@ -159,7 +159,7 @@
          <type>String</type>
       </child>
    </children>
-   <name>neo4j-cypher-unwind-customers-validation UNIT</name>
+   <name>neo4j-cypher-unwind-nodes-validation UNIT</name>
    <security>
       <owner/>
       <owner-permissions-list/>

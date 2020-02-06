@@ -13,7 +13,7 @@
   <parameters>
     <parameter>
       <name>TEST_FOLDER</name>
-      <default_value>neo4j-cypher</default_value>
+      <default_value>neo4j-cypher-unwind</default_value>
       <description />
     </parameter>
   </parameters>
