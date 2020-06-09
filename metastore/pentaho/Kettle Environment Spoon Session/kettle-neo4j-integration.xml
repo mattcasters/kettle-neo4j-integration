@@ -21,6 +21,70 @@
                   </child>
                   <child>
                      <id>filename</id>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher/neo4j-cypher-customers-validation.ktr</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>repositoryName</id>
+                     <value></value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>directory</id>
+                     <value>/</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>fileType</id>
+                     <value>Trans</value>
+                     <type>String</type>
+                  </child>
+               </children>
+            </child>
+            <child>
+               <id>1</id>
+               <value></value>
+               <type>String</type>
+               <children>
+                  <child>
+                     <id>sourceRepository</id>
+                     <value>N</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>filename</id>
+                     <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher/neo4j-cypher-relationships-validation.ktr</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>repositoryName</id>
+                     <value></value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>directory</id>
+                     <value>/</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>fileType</id>
+                     <value>Trans</value>
+                     <type>String</type>
+                  </child>
+               </children>
+            </child>
+            <child>
+               <id>2</id>
+               <value></value>
+               <type>String</type>
+               <children>
+                  <child>
+                     <id>sourceRepository</id>
+                     <value>N</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>filename</id>
                      <value>/home/matt/git/mattcasters/kettle-neo4j-integration/tests/daily-run.kjb</value>
                      <type>String</type>
                   </child>
@@ -37,6 +101,38 @@
                   <child>
                      <id>fileType</id>
                      <value>Job</value>
+                     <type>String</type>
+                  </child>
+               </children>
+            </child>
+            <child>
+               <id>3</id>
+               <value></value>
+               <type>String</type>
+               <children>
+                  <child>
+                     <id>sourceRepository</id>
+                     <value>N</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>filename</id>
+                     <value>file:///home/matt/git/mattcasters/kettle-neo4j-integration/tests/neo4j-cypher-unwind/neo4j-cypher-unwind-create-nodes.ktr</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>repositoryName</id>
+                     <value></value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>directory</id>
+                     <value>/</value>
+                     <type>String</type>
+                  </child>
+                  <child>
+                     <id>fileType</id>
+                     <value>Trans</value>
                      <type>String</type>
                   </child>
                </children>
