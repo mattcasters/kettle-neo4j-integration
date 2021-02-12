@@ -567,7 +567,7 @@
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>
-var cypher = "DROP "+description+";";
+var cypher = "DROP CONSTRAINT "+name+";";
 </jsScript_script>
       </jsScript>
     </jsScripts>
@@ -610,6 +610,7 @@ var cypher = "DROP "+description+";";
     <cypher>call db.constraints()</cypher>
     <batch_size>1</batch_size>
     <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>N</cypher_from_field>
     <cypher_field />
     <unwind>N</unwind>
@@ -618,6 +619,11 @@ var cypher = "DROP "+description+";";
     <return_graph_field />
     <mappings />
     <returns>
+      <return>
+        <name>name</name>
+        <type>String</type>
+        <source_type />
+      </return>
       <return>
         <name>description</name>
         <type>String</type>
@@ -653,6 +659,7 @@ var cypher = "DROP "+description+";";
     <cypher />
     <batch_size>1</batch_size>
     <read_only>N</read_only>
+    <retry>Y</retry>
     <cypher_from_field>Y</cypher_from_field>
     <cypher_field>cypher</cypher_field>
     <unwind>N</unwind>
@@ -687,6 +694,18 @@ var cypher = "DROP "+description+";";
       <schema_name />
     </partitioning>
     <fields>
+      <field>
+        <in_stream_name>name</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\"</replace_string>
+        <replace_by_string />
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
       <field>
         <in_stream_name>description</in_stream_name>
         <out_stream_name />
