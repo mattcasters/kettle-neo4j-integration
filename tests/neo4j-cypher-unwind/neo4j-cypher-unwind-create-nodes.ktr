@@ -488,8 +488,8 @@
   <notepads>
     <notepad>
       <note>Commit size set to 123 to check for dangling records</note>
-      <xloc>640</xloc>
-      <yloc>48</yloc>
+      <xloc>208</xloc>
+      <yloc>224</yloc>
       <width>383</width>
       <heigth>27</heigth>
       <fontname>Sans</fontname>
